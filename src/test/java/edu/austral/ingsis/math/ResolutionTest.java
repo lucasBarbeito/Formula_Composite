@@ -1,6 +1,11 @@
 package edu.austral.ingsis.math;
 
+import edu.austral.ingsis.math.operators.Operator;
+import edu.austral.ingsis.math.operators.SumOperator;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -86,5 +91,22 @@ public class ResolutionTest {
         final Double result = 0d;
 
         assertThat(result, equalTo(0d));
+    }
+
+    @Test
+    public void myResolutionTest(){
+        Operator sum = new SumOperator();
+        Evaluable value1 = new Operand(52);
+        Evaluable value2 = new Operand(5);
+        Evaluable value3 = new Operand(24);
+        Evaluable value4 = new Operand("x");
+        ArrayList<Evaluable> list = new ArrayList<>();
+        list.add(value1);
+        list.add(value2);
+        list.add(value3);
+        list.add(value4);
+        Evaluable expression = new Expression(list,sum);
+        System.out.println(expression.evaluate());
+
     }
 }
