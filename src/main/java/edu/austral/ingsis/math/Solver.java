@@ -66,7 +66,4 @@ public class Solver {
         return result;
     }
 
-    private void cases(){
-
-    }
 }
