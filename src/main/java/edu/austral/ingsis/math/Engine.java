@@ -3,6 +3,7 @@ package edu.austral.ingsis.math;
 import edu.austral.ingsis.math.operators.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Engine {
@@ -12,13 +13,14 @@ public class Engine {
     static Operator mult = new MultiplyOperator();
     static Operator div = new DivisionOperator();
     static Operator power = new ExponentOperator();
+    static Operator modulus = new ModulusOperator();
 
     public static void main(String[] args) {
         ArrayList<Expression> expressions = new ArrayList<>();
-        createExpressions(expressions);
-        String repeat = "Y";
+        String repeat;
 
         do {
+            createExpressions(expressions);
             System.out.println("Choose an equation");
             System.out.println("1) 1 + x ");
             System.out.println("2) 12 / div");
@@ -26,6 +28,7 @@ public class Engine {
             System.out.println("4) (27 / a) ^ b");
             System.out.println("5) z ^ (1/2)");
             System.out.println("6) [(52*5*24*x)^(5-y)]^3");
+            System.out.println("7) |value| - 8");
             switch (scanner.nextInt() -1){
                 case 0:
                     checkExpressions(expressions.get(0));
@@ -51,10 +54,15 @@ public class Engine {
                     checkExpressions(expressions.get(5));
                     System.out.println(expressions.get(5).evaluate());
                     break;
+                case 6:
+                    checkExpressions(expressions.get(6));
+                    System.out.println(expressions.get(6).evaluate());
+                    break;
             }
-            System.out.println("Do you want to try again? Press Y");
-            repeat = scanner.nextLine();
-        }while (repeat.equals("Y"));
+            System.out.println("Do you want to try again? Press y");
+            expressions.clear();
+            repeat = scanner.next();
+        }while (Objects.equals(repeat, "y"));
     }
 
     private static void checkExpressions(Expression expression){
@@ -94,7 +102,7 @@ public class Engine {
         list31.add(value31);
         list31.add(value32);
         Expression expression31 = new Expression(list31,div);
-        Operand value33 = new Operand("y",4);
+        Operand value33 = new Operand("y");
         ArrayList list32 = new ArrayList();
         list32.add(expression31);
         list32.add(value33);
@@ -153,6 +161,17 @@ public class Engine {
         list64.add(value67);
         Expression expression6 = new Expression(list64,power);
         expressions.add(expression6);
+
+        Operand value71 = new Operand("value");
+        Operand value72 = new Operand(8);
+        ArrayList list71 = new ArrayList();
+        list71.add(value71);
+        Expression expression71 = new Expression(list71,modulus);
+        ArrayList list72 = new ArrayList();
+        list72.add(expression71);
+        list72.add(value72);
+        Expression expression7 = new Expression(list72,substract);
+        expressions.add(expression7);
 
 
 

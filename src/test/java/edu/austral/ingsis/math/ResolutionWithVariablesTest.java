@@ -16,6 +16,7 @@ public class ResolutionWithVariablesTest {
     Operator mult = new MultiplyOperator();
     Operator div = new DivisionOperator();
     Operator power = new ExponentOperator();
+    Operator modulus = new ModulusOperator();
 
     /**
      * Case 1 + x where x = 3
@@ -113,9 +114,17 @@ public class ResolutionWithVariablesTest {
      */
     @Test
     public void shouldResolveFunction6() {
-        final Double result = 0d;
-
-        assertThat(result, equalTo(0d));
+        Operand value1 = new Operand("value",-8);
+        Operand value2 = new Operand(8);
+        ArrayList list1 = new ArrayList();
+        list1.add(value1);
+        Expression expression1 = new Expression(list1,modulus);
+        ArrayList list2 = new ArrayList();
+        list1.add(expression1);
+        list1.add(value2);
+        Expression expression = new Expression(list2,substract);
+        assertThat(expression.evaluate(), equalTo(0d));
+        System.out.println(expression.evaluate());
     }
 
     /**

@@ -9,7 +9,13 @@ public class ModulusOperator implements Operator{
 
     @Override
     public double evaluate(List<Evaluable> evaluableList) {
-        return 0;
+        double result = 0;
+        for (int i = 0; i < evaluableList.size(); i++){
+            if (!Double.isNaN(evaluableList.get(i).evaluate())){
+                result += Math.abs(evaluableList.get(i).evaluate());
+            }
+        }
+        return result;
     }
 
     @Override

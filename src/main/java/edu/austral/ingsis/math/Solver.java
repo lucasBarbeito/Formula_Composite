@@ -62,6 +62,11 @@ public class Solver {
                     }
                 }
                 break;
+            case '|':
+                for (int i = 0; i < results.size(); i++){
+                    result = Math.abs(results.get(i));
+                }
+                break;
         }
         return result;
     }
