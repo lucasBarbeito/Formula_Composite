@@ -12,6 +12,8 @@ public class Solver {
         for (Evaluable evaluable: evaluables){
             if (evaluable instanceof Expression){
                 results.add(((Expression) evaluable).getOperator().evaluate(((Expression) evaluable).getEvaluables()));
+            }else {
+                results.add(evaluable.evaluate());
             }
         }
         switch (operator.getName()){
@@ -51,7 +53,15 @@ public class Solver {
                     }
                 }
                 break;
-
+            case '^':
+                for (int i = 0; i < results.size(); i++){
+                    if (i == 0){
+                        result = results.get(0);
+                    }else {
+                        result = Math.pow(result,results.get(i));
+                    }
+                }
+                break;
         }
         return result;
     }
