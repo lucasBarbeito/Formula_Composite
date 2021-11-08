@@ -7,13 +7,13 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Engine {
-    static Scanner scanner = new Scanner(System.in);
-    static Operator sum = new SumOperator();
-    static Operator substract = new SubstractOperator();
-    static Operator mult = new MultiplyOperator();
-    static Operator div = new DivisionOperator();
-    static Operator power = new ExponentOperator();
-    static Operator modulus = new ModulusOperator();
+    private static Scanner scanner = new Scanner(System.in);
+    private static Operator sum = new SumOperator();
+    private static Operator substract = new SubstractOperator();
+    private static Operator mult = new MultiplyOperator();
+    private static Operator div = new DivisionOperator();
+    private static Operator power = new ExponentOperator();
+    private static Operator modulus = new ModulusOperator();
 
     public static void main(String[] args) {
         ArrayList<Expression> expressions = new ArrayList<>();
@@ -31,31 +31,31 @@ public class Engine {
             System.out.println("7) |value| - 8");
             switch (scanner.nextInt() -1){
                 case 0:
-                    checkExpressions(expressions.get(0));
+                    checkEmptyValues(expressions.get(0));
                     System.out.println(expressions.get(0).evaluate());
                     break;
                 case 1:
-                    checkExpressions(expressions.get(1));
+                    checkEmptyValues(expressions.get(1));
                     System.out.println(expressions.get(1).evaluate());
                     break;
                 case 2:
-                    checkExpressions(expressions.get(2));
+                    checkEmptyValues(expressions.get(2));
                     System.out.println(expressions.get(2).evaluate());
                     break;
                 case 3:
-                    checkExpressions(expressions.get(3));
+                    checkEmptyValues(expressions.get(3));
                     System.out.println(expressions.get(3).evaluate());
                     break;
                 case 4:
-                    checkExpressions(expressions.get(4));
+                    checkEmptyValues(expressions.get(4));
                     System.out.println(expressions.get(4).evaluate());
                     break;
                 case 5:
-                    checkExpressions(expressions.get(5));
+                    checkEmptyValues(expressions.get(5));
                     System.out.println(expressions.get(5).evaluate());
                     break;
                 case 6:
-                    checkExpressions(expressions.get(6));
+                    checkEmptyValues(expressions.get(6));
                     System.out.println(expressions.get(6).evaluate());
                     break;
             }
@@ -65,7 +65,7 @@ public class Engine {
         }while (Objects.equals(repeat, "y"));
     }
 
-    private static void checkExpressions(Expression expression){
+    private static void checkEmptyValues(Expression expression){
         ArrayList<Evaluable> expressions = expression.getEvaluables();
         for (Evaluable evaluable : expressions){
             if (evaluable instanceof Operand){
@@ -74,7 +74,7 @@ public class Engine {
                     ((Operand) evaluable).setValue(scanner.nextDouble());
                 }
             }else {
-                checkExpressions((Expression) evaluable);
+                checkEmptyValues((Expression) evaluable);
             }
         }
     }
